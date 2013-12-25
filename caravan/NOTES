@@ -1,0 +1,28 @@
+Major categories
+
+Tasks
+ * Overview
+ * Job list
+ ...
+
+Infrastructure
+ * Machines
+ - vms
+ - dedis
+ * Workers
+ * Aggregate Stats
+ - bandwidth/pps
+ - queue size
+
+Results
+ *
+
+
+Job List:
+PortScan
+VNCPrint/VNCShot
+RDPShot
+HTTP(s)print/BrowserShot
+
+Banner grabber?
+BlackHoleChecker?
