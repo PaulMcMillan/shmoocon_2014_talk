@@ -81,8 +81,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-#    os.path.abspath(os.path.join(
-#            ROOT_PATH, 'static')),
+    os.path.abspath(os.path.join(
+            ROOT_PATH, 'static')),
     os.path.abspath(os.path.join(
             ROOT_PATH, '..', 'openstack_dashboard/static')),
 )
@@ -121,6 +121,8 @@ WSGI_APPLICATION = 'caravan.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(ROOT_PATH, 'templates'),
+    os.path.join(ROOT_PATH, '../openstack_dashboard/templates'),
+    os.path.join(ROOT_PATH, '../horizon/templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
