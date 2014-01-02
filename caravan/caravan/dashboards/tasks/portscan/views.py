@@ -21,7 +21,7 @@ class IndexView(tables.DataTableView):
 
     def get_data(self):
         result = []
-        data = MasscanQueue().lrange()
+        data = MasscanQueue()[:]
         for i, datum in enumerate(data):
             d = datum._asdict()
             d['id'] = i

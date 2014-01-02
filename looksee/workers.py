@@ -2,6 +2,8 @@ import subprocess
 import re
 
 from tasa.worker import BaseWorker
+from tasa.store import PickleQueue
+
 
 from queues import MasscanQueue, ScanResultQueue
 
@@ -36,11 +38,12 @@ class MasscanWorker(BaseWorker):
         proc.wait()
 
 
-class RFBFingerprinter(BaseWorker):
-    qinput = Queue('rfb_input')
+class RFBPrintWorker(BaseWorker):
+    qinput = ScanResultQueue('rfb_input')
     qoutput = PickleQueue('rfb_open')
 
     def run(self, job):
+        # job is a ScanResultJob
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(1)
         output = []
@@ -60,7 +63,7 @@ class RFBFingerprinter(BaseWorker):
             pass
 
 
-class ScreenshotWorker(BaseWorker):
+class RFBScreenshotWorker(BaseWorker):
     qinput = PickleQueue('rfb_print')
     qoutput = PickleQueue('successful_screenshots')
 

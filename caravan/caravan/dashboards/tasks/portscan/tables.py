@@ -1,6 +1,5 @@
 from horizon import tables
 
-
 from looksee.queues import MasscanQueue
 
 
@@ -21,7 +20,7 @@ class DeleteScan(tables.Action):
     classes = ("btn-danger", "btn-delete")
 
     def handle(self, data_table, request, object_ids):
-        MasscanQueue().delete()
+        MasscanQueue().clear()
 
 
 class TCPScanTable(tables.DataTable):

@@ -23,12 +23,6 @@ class MasscanQueue(store.Queue):
         if value:
             return MasscanJob(*json.loads(value))
 
-    def lrange(self, start=0, stop=-1):
-        return (self.deserialize(item) for item in
-                self.redis.lrange(self.name, start, stop))
-
-    def delete(self):
-        return self.redis.delete(self.name)
 
 class ScanResultQueue(store.Queue):
     def deserialize(self, value):
