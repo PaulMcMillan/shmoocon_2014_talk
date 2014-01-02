@@ -13,10 +13,10 @@ class IndexView(tables.MultiTableView):
     template_name = 'tasks/vnc/index.html'
 
     def get_rfb_print_data(self):
-        return RFBPrintWorker.qinput[:]
+        return RFBPrintWorker.qinput[:99]
 
     def get_rfb_shot_data(self):
-        return RFBScreenshotWorker.qinput[:]
+        return RFBScreenshotWorker.qinput[:99]
 
     def get_data(self, request, context, *args, **kwargs):
         # Add data to the context here...
