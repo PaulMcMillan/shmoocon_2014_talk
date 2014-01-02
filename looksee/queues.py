@@ -26,7 +26,8 @@ class MasscanQueue(store.Queue):
 
 class ScanResultQueue(store.Queue):
     def serialize(self, value):
-        return json.dumps(int(value[0]), value[1])
+        value[0] = int(value[0])
+        return json.dumps(value)
 
     def deserialize(self, value):
         if value:
