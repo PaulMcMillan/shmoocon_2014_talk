@@ -20,17 +20,19 @@ class MasscanQueue(store.Queue):
         return json.dumps(map(str, value))
 
     def deserialize(self, value):
-        return MasscanJob(*json.loads(value))
+        if value:
+            return MasscanJob(*json.loads(value))
 
     def lrange(self, start=0, stop=-1):
         return (self.deserialize(item) for item in
-                self.redis.lrange(self.name, 0, -1))
+                self.redis.lrange(self.name, start, stop))
 
     def delete(self):
         return self.redis.delete(self.name)
 
 class ScanResultQueue(store.Queue):
     def deserialize(self, value):
-        result = ScanResultQueue(json.loads(value))
-        result.port = int(result.port)
-        return result
+        if value:
+            result = ScanResultQueue(json.loads(value))
+            result.port = int(result.port)
+            return result
