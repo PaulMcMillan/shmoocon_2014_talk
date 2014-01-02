@@ -41,7 +41,7 @@ class MasscanWorker(BaseWorker):
 
 class RFBPrintWorker(BaseWorker):
     qinput = ScanResultQueue('rfb_input')
-    qoutput = PickleQueue('rfb_open')
+    qoutput = ScanResultQueue('rfb_open')
 
     def run(self, job):
         # job is a ScanResultJob

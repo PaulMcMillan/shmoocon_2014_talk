@@ -30,5 +30,4 @@ class ScanResultQueue(store.Queue):
 
     def deserialize(self, value):
         if value:
-            result = ScanResultJob(*json.loads(value))
-            return result
+            return ScanResultJob(*json.loads(value))
