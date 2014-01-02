@@ -1,5 +1,6 @@
-import subprocess
 import re
+import subprocess
+import socket
 
 from tasa.worker import BaseWorker
 from tasa.store import PickleQueue
