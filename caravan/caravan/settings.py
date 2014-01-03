@@ -214,8 +214,8 @@ LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
 COMPRESS_PRECOMPILERS = (
