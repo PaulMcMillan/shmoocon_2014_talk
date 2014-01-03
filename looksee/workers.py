@@ -57,7 +57,7 @@ class RFBPrintWorker(BaseWorker):
             security_proto = s.recv(512)
             output.append(security_proto)
             s.close()
-            if '\x01' in security_proto:
+            if security_proto and '\x01' in security_proto[1:]:
                 yield job
         except Exception:
             # Bad practice to catch all exceptions, but this is demo code...
@@ -65,7 +65,7 @@ class RFBPrintWorker(BaseWorker):
 
 
 class RFBScreenshotWorker(BaseWorker):
-    qinput = PickleQueue('rfb_print')
+    qinput = ScanResultQueue('rfb_open')
     qoutput = PickleQueue('successful_screenshots')
 
     def __init__(self, *args, **kwargs):
@@ -76,7 +76,7 @@ class RFBScreenshotWorker(BaseWorker):
     def run(self, job):
         screen = str(job.port - 5900)
         # let's try taking a picture
-        command = ['timeout', '30',  # make sure it doesn't hang
+        command = ['timeout', '45',  # make sure it doesn't hang
                    'vncsnapshot',
                    '-passwd', '/dev/null',  # terminate if passwd reqested
                    '-quality', '70',
