@@ -191,7 +191,7 @@ LOGGING = {
 
 HORIZON_CONFIG = {
     'dashboards': ('tasks', 'infrastructure', 'results'),
-    'user_home': 'caravan.dashboards.tasks',
+#    'user_home': 'caravan.dashboards.tasks',
     'ajax_queue_limit': 10,
     'auto_fade_alerts': {
         'delay': 3000,
