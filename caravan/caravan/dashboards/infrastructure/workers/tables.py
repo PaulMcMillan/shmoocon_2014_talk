@@ -12,6 +12,7 @@ class RestartWorker(tables.Action):
     classes = ('btn-danger',)
 
     def handle(self, data_table, request, object_ids):
+        # Send a restart signal
         connection.publish('control', 'restart')
 
 

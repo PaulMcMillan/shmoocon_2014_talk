@@ -8,7 +8,7 @@ from redislog.handlers import RedisHandler
 
 from tasa.store import connection
 
-import logs
+import looksee_logging
 
 
 log = logging.getLogger('oversee')

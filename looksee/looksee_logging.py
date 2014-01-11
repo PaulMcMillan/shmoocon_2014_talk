@@ -1,4 +1,3 @@
-
 import logging
 
 from redislog import handlers, logger
