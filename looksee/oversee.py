@@ -8,6 +8,11 @@ from redislog.handlers import RedisHandler
 
 from tasa.store import connection
 
+import logs
+
+
+log = logging.getLogger('oversee')
+
 
 def ignore_keyboardinterrupt(f):
     """ Don't produce a traceback on ctrl-c """
@@ -36,12 +41,6 @@ def listen_for_halt():
 
 
 if __name__ == '__main__':
-    logging.setLoggerClass(RedisLogger)
-    logging.basicConfig(level=logging.INFO)
-    log = logging.getLogger('oversee')
-    log.addHandler(handlers.RedisHandler('logging', connection,
-                                         level=logging.INFO))
-
     log.info("Starting listener...")
     listen_proc = Process(target=listen_for_halt, args=())
     listen_proc.start()
