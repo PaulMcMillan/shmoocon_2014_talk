@@ -1,3 +1,4 @@
 Django
 requests
 tasa
+python-redis-log
