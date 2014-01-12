@@ -9,7 +9,7 @@ class RestartWorker(tables.Action):
     data_type_singular = 'Worker'
     action_present = 'restart'
     requires_input = False
-    classes = ('btn-danger',)
+    classes = ('btn-warning',)
 
     def handle(self, data_table, request, object_ids):
         # Send a restart signal
