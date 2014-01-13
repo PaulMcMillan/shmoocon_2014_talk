@@ -4,7 +4,7 @@ class BlacklistTable(tables.DataTable):
     value = tables.Column('value')
 
     def get_object_id(self, datum):
-        return str(datum)
+        return datum['id']
 
     class Meta:
         name = 'blacklist'
