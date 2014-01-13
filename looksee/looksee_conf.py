@@ -10,7 +10,7 @@ def run(WorkerClass):
         log.info('Started worker:%s:%s', worker.__class__.__name__, os.getpid())
         for job in worker:
             if job:
-                logger.debug('Completed job: %s', str(job)[:50])
+                log.debug('Completed job: %s', repr(job)[:50])
     return wrapped
 
 # host_regex, func, count
