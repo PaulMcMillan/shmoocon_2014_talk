@@ -24,8 +24,8 @@ def compile_redis():
         pass
 
     with lcd(tempdir):
-        local('wget https://github.com/antirez/redis/archive/2.6.16.tar.gz '
-              '-O -| tar xz --strip 1')
+        local('wget http://download.redis.io/releases/redis-2.8.3.tar.gz'
+              ' -O -| tar xz --strip 1')
         local('make')
         #local('make test')  # takes a long time
     shutil.move(os.path.join(tempdir, 'src/redis-server'),
