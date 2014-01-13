@@ -2,18 +2,20 @@ import re
 import subprocess
 import socket
 
-from tasa.worker import BaseWorker
+from tasa import worker
 from tasa.store import PickleQueue
-
 
 from queues import MasscanQueue, ScanResultQueue
 
 
-class MasscanWorker(BaseWorker):
+class LookseeWorker(worker.BaseWorker):
+    """ A base worker to inherit from. """
+
+class MasscanWorker(LookseeWorker):
     qinput = MasscanQueue()
     qoutput = None  # set by each job as it is handled
 
-    output_chunk_size=500
+    output_chunk_size=300
 
     def handle(self, job):
         self.qoutput = ScanResultQueue(job.qoutput)
@@ -39,7 +41,7 @@ class MasscanWorker(BaseWorker):
         proc.wait()
 
 
-class RFBPrintWorker(BaseWorker):
+class RFBPrintWorker(LookseeWorker):
     qinput = ScanResultQueue('rfb_input')
     qoutput = ScanResultQueue('rfb_open')
 
@@ -64,7 +66,7 @@ class RFBPrintWorker(BaseWorker):
             pass
 
 
-class RFBScreenshotWorker(BaseWorker):
+class RFBScreenshotWorker(LookseeWorker):
     qinput = ScanResultQueue('rfb_open')
     qoutput = PickleQueue('successful_screenshots')
 

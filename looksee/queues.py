@@ -12,7 +12,10 @@ ScanResultJob = namedtuple('ScanResultJob',
                            ['port', 'ip'])
 
 
-class MasscanQueue(store.Queue):
+class LookseeQueue(store.Queue):
+    blocking = 0
+
+class MasscanQueue(LookseeQueue):
     """ Masscan parameter queue """
     name = 'masscan'
 
@@ -24,7 +27,7 @@ class MasscanQueue(store.Queue):
             return MasscanJob(*json.loads(value))
 
 
-class ScanResultQueue(store.Queue):
+class ScanResultQueue(LookseeQueue):
     def deserialize(self, value):
         if value:
             res = ScanResultJob(*json.loads(value))

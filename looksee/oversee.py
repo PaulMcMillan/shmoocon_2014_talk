@@ -1,4 +1,6 @@
 import logging
+import socket
+import re
 
 from multiprocessing import Process
 from functools import wraps
@@ -9,7 +11,7 @@ from redislog.handlers import RedisHandler
 from tasa.store import connection
 
 import looksee_logging
-
+import looksee_conf  # This could probably be more smooth
 
 log = logging.getLogger('oversee')
 
@@ -47,8 +49,17 @@ if __name__ == '__main__':
 
     processes = []
 
+    fqdn = socket.getfqdn()
+    for w in looksee_conf.workers:
+        if re.match(w['host'], fqdn):
+            for x in range(w['count']):
+                proc = Process(target=w['func'], args=())
+                proc.start()
+                processes.append(proc)
     try:
         listen_proc.join()
     except KeyboardInterrupt:
         pass
+    for proc in processes:
+        proc.terminate()
     log.info("Exiting...")

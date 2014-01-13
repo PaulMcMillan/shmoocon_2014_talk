@@ -20,6 +20,8 @@ class WorkerTable(tables.DataTable):
     addr = tables.Column('address', verbose_name='Address')
     port = tables.Column('port')
     age = tables.Column('age')
+    idle = tables.Column('idle')
+    flags = tables.Column('flags')
     cmd = tables.Column('cmd', verbose_name='Last Command')
 
     def get_object_id(self, datum):
