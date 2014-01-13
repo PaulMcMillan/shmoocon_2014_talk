@@ -17,9 +17,16 @@ class RestartWorker(tables.Action):
 
 
 class WorkerTable(tables.DataTable):
-    hostname = tables.Column('hostname')
+    addr = tables.Column('address', verbose_name='Address')
+    port = tables.Column('port')
+    age = tables.Column('age')
+    cmd = tables.Column('cmd', verbose_name='Last Command')
+
+    def get_object_id(self, datum):
+        return datum['addr']
 
     class Meta:
         name = 'workers'
-        verbose_name = 'Workers'
+        verbose_name = 'Connections'
         table_actions = (RestartWorker,)
+        multi_select = False

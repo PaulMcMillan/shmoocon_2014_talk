@@ -24,12 +24,12 @@ class DeleteScan(tables.Action):
 
 
 class TCPScanTable(tables.DataTable):
-    iprange = tables.Column('iprange')
+    iprange = tables.Column('iprange', verbose_name='IP Range')
     ports = tables.Column('ports')
-    proto = tables.Column('proto')
+    proto = tables.Column('proto', verbose_name='Protocol')
     shards = tables.Column('shards')
     seed = tables.Column('seed')
-    qoutput = tables.Column('qoutput')
+    qoutput = tables.Column('qoutput', verbose_name='Output Queue')
 
     def get_object_id(self, datum):
         return datum['id']
