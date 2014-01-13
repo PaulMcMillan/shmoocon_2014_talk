@@ -5,7 +5,13 @@ respawn
 chdir /opt/shmoocon_2014_talk
 
 pre-start script
+  echo "Updating looksee checkout..."
   git pull
 end script
 
 exec /usr/bin/python looksee/oversee.py
+
+post-stop script
+  echo "Sleeping 5 after stopping..."
+  sleep 5
+end script

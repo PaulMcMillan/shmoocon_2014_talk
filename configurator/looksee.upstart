@@ -1,9 +1,0 @@
-start on static-network-up
-
-chdir /opt/shmoocon_2014_talk
-
-pre-start script
-  git pull
-end script
-
-exec /usr/bin/python looksee/oversee.py
