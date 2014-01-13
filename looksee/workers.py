@@ -11,6 +11,7 @@ from queues import MasscanQueue, ScanResultQueue
 class LookseeWorker(worker.BaseWorker):
     """ A base worker to inherit from. """
 
+
 class MasscanWorker(LookseeWorker):
     qinput = MasscanQueue()
     qoutput = None  # set by each job as it is handled

@@ -1,6 +1,6 @@
 import logging
 import os
-from workers import MasscanWorker
+from workers import MasscanWorker, RFBPrintWorker, RFBScreenshotWorker
 
 log = logging.getLogger(__name__)
 
@@ -23,4 +23,9 @@ workers = [
      'func': run(MasscanWorker),
      'count': 1,
      },
+    {'host': 's2',
+     'func': run(RFBPrintWorker),
+     'count': 100,
+     },
+
     ]
