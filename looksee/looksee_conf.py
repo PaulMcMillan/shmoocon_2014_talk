@@ -19,4 +19,8 @@ workers = [
      'func': run(MasscanWorker),
      'count': 10,
      },
+    {'host': 's2',
+     'func': run(MasscanWorker),
+     'count': 1,
+     },
     ]
