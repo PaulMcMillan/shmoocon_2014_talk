@@ -38,6 +38,7 @@ def compile_redis():
 def configure_redis():
     "Copy redis configuration and scripts"
     sudo('mkdir -p /etc/redis')
+    sudo('rm -rf /etc/redis/*')
     put('configs/redis.upstart', '/etc/init/redis.conf',
         use_sudo=True)
     put('configs/redis.conf', '/etc/redis/redis.conf',
