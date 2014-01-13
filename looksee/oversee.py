@@ -36,6 +36,7 @@ def listen_for_halt():
     pubsub = connection.pubsub()
     pubsub.subscribe('control')
     for message in pubsub.listen():
+        print message
         if message['type'] == 'message':
             message_lookup[message['data']]()
 
