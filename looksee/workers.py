@@ -49,7 +49,7 @@ class RFBPrintWorker(LookseeWorker):
     def run(self, job):
         # job is a ScanResultJob
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(1)
+        s.settimeout(3)
         output = []
         try:
             s.connect((job.ip, job.port))

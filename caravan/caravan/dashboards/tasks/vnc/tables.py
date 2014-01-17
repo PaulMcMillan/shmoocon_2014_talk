@@ -23,11 +23,12 @@ class RFBPrintTable(tables.DataTable):
     port = tables.Column('port')
 
     def get_object_id(self, datum):
-        return datum.ip
+        return datum['id']
 
     class Meta:
         name = 'rfb_print'
         verbose_name = 'Fingerprint'
+        pagination_param='print_marker'
         multi_select = False
         table_actions = (DeletePrintJobs,)
 
@@ -53,10 +54,11 @@ class RFBScreenshotTable(tables.DataTable):
     port = tables.Column('port')
 
     def get_object_id(self, datum):
-        return datum.ip
+        return datum['id']
 
     class Meta:
         name = 'rfb_shot'
         verbose_name = 'Screenshot'
+        pagination_param='shot_marker'
         multi_select = False
         table_actions = (DeleteScreenshotJobs,)

@@ -7,6 +7,7 @@ pubsub = connection.pubsub()
 pubsub.subscribe('logging')
 try:
     for message in pubsub.listen():
+        print message
         if message['type'] == 'message':
             pprint(json.loads(message['data']))
 except KeyboardInterrupt:

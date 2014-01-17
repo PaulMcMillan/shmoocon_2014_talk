@@ -21,9 +21,12 @@ class IndexView(tables.DataTableView):
 
     def get_data(self):
         result = []
-        data = MasscanQueue()[:]
-        for i, datum in enumerate(data):
-            d = datum._asdict()
-            d['id'] = i
-            result.append(d)
-        return result
+        marker = int(self.request.GET.get(
+                self.table_class._meta.pagination_param, 0))
+        return MasscanQueue().id_and_chunk(marker)
+
+    def has_more_data(self, table):
+        if len(MasscanQueue()) > 0:
+            return True
+        else:
+            return False

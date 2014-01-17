@@ -13,10 +13,18 @@ class IndexView(tables.MultiTableView):
     template_name = 'tasks/vnc/index.html'
 
     def get_rfb_print_data(self):
-        return RFBPrintWorker.qinput[:99]
+        marker = int(self.request.GET.get(
+                self.table_classes[0]._meta.pagination_param, 0))
+        return RFBPrintWorker.qinput.id_and_chunk(marker)
 
     def get_rfb_shot_data(self):
-        return RFBScreenshotWorker.qinput[:99]
+        marker = int(self.request.GET.get(
+                self.table_classes[1]._meta.pagination_param, 0))
+        return RFBScreenshotWorker.qinput.id_and_chunk(marker)
+
+    def has_more_data(self, table):
+        # Yeah, I should fix this
+        return True
 
     def get_data(self, request, context, *args, **kwargs):
         # Add data to the context here...
