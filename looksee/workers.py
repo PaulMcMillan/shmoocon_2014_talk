@@ -73,7 +73,7 @@ class RFBScreenshotWorker(LookseeWorker):
     qoutput = PickleQueue('successful_screenshots')
 
     def __init__(self, *args, **kwargs):
-        super(ScreenshotWorker, self).__init__(*args, **kwargs)
+        super(RFBScreenshotWorker, self).__init__(*args, **kwargs)
         pyrax.set_credentials(tasa.conf.rax_username,
                               tasa.conf.rax_password)
 
