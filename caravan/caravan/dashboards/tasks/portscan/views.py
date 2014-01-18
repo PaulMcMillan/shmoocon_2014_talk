@@ -9,6 +9,7 @@ import forms as scan_forms
 import tasa.store
 from looksee.queues import MasscanQueue
 
+
 class CreateView(forms.ModalFormView):
     form_class = scan_forms.CreateScan
     template_name = 'tasks/portscan/create.html'

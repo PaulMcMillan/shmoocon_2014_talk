@@ -6,7 +6,7 @@ import horizon
 class Tasks(horizon.Dashboard):
     name = _("Tasks")
     slug = "tasks"
-    panels = ('overview', 'portscan', 'vnc', 'rdp', 'browser')  # Add your panels here.
+    panels = ('overview', 'portscan', 'vnc', 'rdp', 'browser', 'mainframe')  # Add your panels here.
     default_panel = 'overview'  # Specify the slug of the dashboard's default panel.
 
 

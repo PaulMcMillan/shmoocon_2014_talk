@@ -6,6 +6,7 @@ from caravan.dashboards.tasks.vnc.tables import RFBScreenshotTable
 
 from looksee.workers import RFBPrintWorker, RFBScreenshotWorker
 
+from tasa.store import connection
 
 class IndexView(tables.MultiTableView):
     table_classes = (RFBPrintTable, RFBScreenshotTable)
@@ -23,8 +24,14 @@ class IndexView(tables.MultiTableView):
         return RFBScreenshotWorker.qinput.id_and_chunk(marker)
 
     def has_more_data(self, table):
-        # Yeah, I should fix this
-        return True
+        # oh god, I should fix this
+        if table.name == 'rfb_shot':
+            if len(RFBScreenshotWorker.qinput):
+                return True
+        elif table.name == 'rfb_print':
+            if len(RFBPrintWorker.qinput):
+                return True
+        return False
 
     def get_data(self, request, context, *args, **kwargs):
         # Add data to the context here...
