@@ -78,6 +78,8 @@ class RFBScreenshotWorker(LookseeWorker):
 
     def __init__(self, *args, **kwargs):
         super(RFBScreenshotWorker, self).__init__(*args, **kwargs)
+        pyrax.settings.set('identity_type', 'rackspace')
+        pyrax.set_setting('region', 'ORD')
         pyrax.set_credentials(tasa.conf.rax_username,
                               tasa.conf.rax_password)
 
