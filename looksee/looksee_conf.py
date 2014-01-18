@@ -20,7 +20,7 @@ workers = [
      'count': 1,
      },
     {'host': 's2',
-     'func': run(RFBPrintWorker),
+     'func': run(MainframeWorker),
      'count': 100,
      },
     ]

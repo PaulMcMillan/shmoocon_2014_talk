@@ -19,6 +19,7 @@ class CreateScan(forms.SelfHandlingForm):
             ('rfb_input', 'VNC Fingerprint'),
             ('browser_input', 'Browser Screenshot'),
             ('rdp_input', 'RDP Screenshot'),
+            ('mainframe_input', 'IBM Mainframe Grab'),
             ],
         initial='masscan_results')
 
