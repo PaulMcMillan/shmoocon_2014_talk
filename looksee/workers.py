@@ -3,6 +3,8 @@ import subprocess
 import socket
 import telnetlib
 
+import pyrax
+
 from tasa import worker
 from tasa.store import PickleQueue
 
