@@ -1,16 +1,26 @@
+""" This was originally intended to house per-worker config. It has
+grown and should be refactored.
+"""
+
 import logging
 import os
+import socket
 import workers
 
 from setproctitle import setproctitle
+
+from tasa.store import connection
 
 log = logging.getLogger(__name__)
 
 def run(WorkerClass):
     def wrapped():
         worker = WorkerClass()
-        setproctitle(str(worker))
-        log.info('Started worker:%s:%s', worker.__class__.__name__, os.getpid())
+        worker_identifier = '%s:%s:%s' % (
+            socket.getfqdn(), worker.__class__.__name__, os.getpid())
+        setproctitle(worker_identifier)
+        connection.client_setname(worker_identifier)
+        log.info('Started worker: %s' % worker_identifier)
         for job in worker:
             if job:
                 log.debug('Completed job: %s', repr(job)[:50])

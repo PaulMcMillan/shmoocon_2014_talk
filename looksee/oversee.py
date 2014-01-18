@@ -37,7 +37,9 @@ message_lookup = {
 
 @ignore_keyboardinterrupt
 def listen_for_halt():
-    setproctitle('Halt Listener')
+    name = 'Halt_Listener'
+    setproctitle(name)
+    connection.client_setname(name)
     pubsub = connection.pubsub()
     pubsub.subscribe('control')
     for message in pubsub.listen():
