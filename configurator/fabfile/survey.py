@@ -16,6 +16,7 @@ DEBS = [
     'libhiredis*',
     'ethtool',
     'python-setproctitle',
+    'vncsnapshot'
     ]
 
 @task
@@ -140,7 +141,7 @@ def install_masscan():
 
 @task
 def install_looksee():
-    sudo('pip install -U tasa python-redis-log requests')
+    sudo('pip install -U tasa python-redis-log requests pyrax')
     with cd('/opt'):
         sudo('rm -rf shmoocon_2014_talk')
         sudo('git clone --depth 1 '
@@ -189,3 +190,8 @@ def configure_survey():
 def check_networking():
     sudo('ethtool -k eth0')
     sudo('ethtook -k eth1')
+
+
+@task
+def disable_flow_control(iface):
+    sudo('ethtool -A %s autoneg off rx off tx off' % iface)
