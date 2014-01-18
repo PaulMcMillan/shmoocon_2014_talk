@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     hostname = socket.gethostname()
     for w in looksee_conf.workers:
-        if re.match(hostname, w['host']):
+        if re.match(w['host'], hostname):
             for x in range(w['count']):
                 proc = Process(target=w['func'], args=())
                 proc.start()

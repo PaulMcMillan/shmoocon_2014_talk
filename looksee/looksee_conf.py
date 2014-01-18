@@ -28,15 +28,15 @@ def run(WorkerClass):
 
 # host_regex, func, count
 workers = [
-    {'host': 's\d+',
+    {'host': r's\d+',
      'func': run(workers.MasscanWorker),
      'count': 1,
      },
-    {'host': 'cloud-worker',
+    {'host': r'cloud-worker',
      'func': run(workers.RFBScreenshotWorker),
      'count': 1,
      },
-    {'host': 'cloud-worker',
+    {'host': r'cloud-worker',
      'func': run(workers.RFBPrintWorker),
      'count': 1,
      },
