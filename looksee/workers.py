@@ -5,6 +5,8 @@ import telnetlib
 
 import pyrax
 
+import tasa.conf
+
 from tasa import worker
 from tasa.store import PickleQueue
 
