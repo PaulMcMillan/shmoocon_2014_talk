@@ -51,6 +51,15 @@ def install_pip():
          'get-pip.py -O - | python')
 
 @task
+def install_ssh_configs():
+    try:
+        put('configs/id_rsa', '~/.ssh/id_rsa', mode=0o600)
+        put('configs/id_rsa.pub', '~/.ssh/id_rsa.pub', mode=0o600)
+    except IOError:
+        print "Not installing private keys."
+    put('configs/known_hosts', '~/.ssh/known_hosts', mode=0o644)
+
+@task
 def install_tasa():
     "Install tasa."
     sudo('pip install -U tasa')
@@ -130,11 +139,11 @@ def install_masscan():
 
 @task
 def install_looksee():
+    sudo('pip install -U tasa python-redis-log requests setproctitle')
     with cd('/opt'):
         sudo('rm -rf shmoocon_2014_talk')
         sudo('git clone --depth 1 '
              'git@github.com:PaulMcMillan/shmoocon_2014_talk.git')
-    sudo('pip install -U python-redis-log requests')
     # upstart doesn't play nice with symlinks, so we have to actually
     # copy this file
     put('configs/looksee.upstart', '/etc/init/looksee.conf',
@@ -145,6 +154,7 @@ def install_looksee():
 @task
 def update_looksee():
     with cd('/opt/shmoocon_2014_talk'):
+        sudo('git reset --hard HEAD')
         sudo('git pull')
     with settings(warn_only=True):
         sudo('service looksee restart')
@@ -159,6 +169,7 @@ def configure_survey():
     "Run all configuration to set up survey slave"
     install_masscan()  # do this first because it uses local sudo
 
+    install_ssh_configs()
     install_debs()
     configure_upgrades()
     set_timezone()
@@ -167,6 +178,8 @@ def configure_survey():
     configure_tasa()
     configure_collectd()
     configure_nginx()
+
+    install_looksee()
 
     reboot()
 

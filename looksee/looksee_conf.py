@@ -2,11 +2,14 @@ import logging
 import os
 import workers
 
+from setproctitle import setproctitle
+
 log = logging.getLogger(__name__)
 
 def run(WorkerClass):
     def wrapped():
         worker = WorkerClass()
+        setproctitle(worker)
         log.info('Started worker:%s:%s', worker.__class__.__name__, os.getpid())
         for job in worker:
             if job:
@@ -15,12 +18,12 @@ def run(WorkerClass):
 
 # host_regex, func, count
 workers = [
-    {'host': 's2',
+    {'host': 's*',
      'func': run(workers.MasscanWorker),
      'count': 1,
      },
-    {'host': 's2',
-     'func': run(workers.MainframeWorker),
-     'count': 100,
-     },
+    # {'host': 's2',
+    #  'func': run(workers.MainframeWorker),
+    #  'count': 100,
+    #  },
     ]

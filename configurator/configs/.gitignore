@@ -1,2 +1,4 @@
 tasa\.conf
 redis-local.conf
+id_rsa
+id_rsa.pub
