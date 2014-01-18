@@ -34,10 +34,10 @@ workers = [
      },
     {'host': 'cloud-worker',
      'func': run(workers.RFBScreenshotWorker),
-     'count': 300,
+     'count': 1,
      },
     {'host': 'cloud-worker',
      'func': run(workers.RFBPrintWorker),
-     'count': 200,
+     'count': 1,
      },
     ]
