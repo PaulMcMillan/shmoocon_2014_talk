@@ -17,6 +17,7 @@ class RestartWorker(tables.Action):
 
 
 class WorkerTable(tables.DataTable):
+    name = tables.Column('name', verbose_name='Name')
     addr = tables.Column('address', verbose_name='Address')
     port = tables.Column('port')
     age = tables.Column('age')

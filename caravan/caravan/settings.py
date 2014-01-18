@@ -2,6 +2,9 @@
 import os
 import sys
 
+from tasa.store import connection
+connection.client_setname('Caravan')
+
 from caravan import exceptions
 
 DEBUG = True
