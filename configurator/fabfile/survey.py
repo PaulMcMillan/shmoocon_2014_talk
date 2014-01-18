@@ -101,9 +101,21 @@ def compile_masscan():
 @task
 def configure_masscan():
     "Copy masscan configuration"
+    remote_hostname = run('hostname')
     sudo('mkdir -p /etc/masscan')
-    put('configs/masscan.conf', '/etc/masscan/masscan.conf',
-        use_sudo=True)
+    with tempfile.NamedTemporaryFile() as f:
+        with open('configs/masscan.conf') as f2:
+            base_conf = f2.read()
+        try:
+            with open('configs/masscan.conf.%s' % remote_hostname) as f2:
+                extra_conf = f2.read()
+        except IOError:
+            extra_conf = ''
+        f.write(base_conf)
+        f.write(extra_conf)
+        f.flush()
+        put(f.name, '/etc/masscan/masscan.conf',
+            use_sudo=True)
     put('configs/excludes.txt', '/etc/masscan/excludes.txt',
         use_sudo=True)
     put('masscan', '/usr/local/bin/masscan',

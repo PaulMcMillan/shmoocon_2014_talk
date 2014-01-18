@@ -1,0 +1,6 @@
+
+adapter = eth0
+adapter-ip = 109.236.80.124
+
+adapter = eth1
+adapter-ip = 109.236.80.126
