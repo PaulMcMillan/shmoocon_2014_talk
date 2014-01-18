@@ -1,6 +1,6 @@
 import logging
 import os
-from workers import MasscanWorker, RFBPrintWorker, RFBScreenshotWorker
+import workers
 
 log = logging.getLogger(__name__)
 
@@ -16,11 +16,11 @@ def run(WorkerClass):
 # host_regex, func, count
 workers = [
     {'host': 's2',
-     'func': run(MasscanWorker),
+     'func': run(workers.MasscanWorker),
      'count': 1,
      },
     {'host': 's2',
-     'func': run(MainframeWorker),
+     'func': run(workers.MainframeWorker),
      'count': 100,
      },
     ]
