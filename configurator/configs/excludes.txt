@@ -212,6 +212,7 @@
 
 # Snel Internet Services B.V. (aka abuse.bz)
 5.104.224.0/21
+37.25.46.251/32
 37.148.160.0/21
 77.95.224.0/21
 78.41.200.0/21
@@ -474,7 +475,6 @@
 177.8.96.0/20
 177.220.0.0/17
 
-
 # Caltech
 131.215.0.0/16
 
@@ -491,3 +491,12 @@
 
 # complained about "intrusion attempts"
 192.241.175.237
+
+# another individual complainer
+95.211.216.152/32
+
+# winbiz
+198.0.232.64/26
+
+# darknet.superb.net / hopone.net
+95.211.216.152
