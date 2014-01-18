@@ -28,7 +28,7 @@ def run(WorkerClass):
 
 # host_regex, func, count
 workers = [
-    {'host': 's*',
+    {'host': 's\d+',
      'func': run(workers.MasscanWorker),
      'count': 1,
      },
