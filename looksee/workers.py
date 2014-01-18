@@ -3,8 +3,6 @@ import subprocess
 import socket
 import telnetlib
 
-import pyrax
-
 import tasa
 
 from tasa import worker
@@ -78,6 +76,7 @@ class RFBScreenshotWorker(LookseeWorker):
 
     def __init__(self, *args, **kwargs):
         super(RFBScreenshotWorker, self).__init__(*args, **kwargs)
+        import pyrax
         pyrax.settings.set('identity_type', 'rackspace')
         pyrax.set_setting('region', 'ORD')
         pyrax.set_credentials(tasa.conf.rax_username,
