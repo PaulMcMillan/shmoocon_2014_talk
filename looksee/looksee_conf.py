@@ -17,7 +17,7 @@ def run(WorkerClass):
     def wrapped():
         worker = WorkerClass()
         worker_identifier = '%s:%s:%s' % (
-            socket.getfqdn(), worker.__class__.__name__, os.getpid())
+            socket.gethostname(), worker.__class__.__name__, os.getpid())
         setproctitle(worker_identifier)
         connection.client_setname(worker_identifier)
         log.info('Started worker: %s' % worker_identifier)
