@@ -15,10 +15,6 @@ def run(WorkerClass):
 
 # host_regex, func, count
 workers = [
-    {'host': 'computer',
-     'func': run(MasscanWorker),
-     'count': 10,
-     },
     {'host': 's2',
      'func': run(MasscanWorker),
      'count': 1,
@@ -27,5 +23,4 @@ workers = [
      'func': run(RFBPrintWorker),
      'count': 100,
      },
-
     ]

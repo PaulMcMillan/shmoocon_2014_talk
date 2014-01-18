@@ -1,6 +1,7 @@
 import re
 import subprocess
 import socket
+import telnetlib
 
 from tasa import worker
 from tasa.store import PickleQueue
@@ -106,3 +107,19 @@ class RFBScreenshotWorker(LookseeWorker):
             connection = tasa.store.connection
             connection.hset('container_' + container, file_name, stderr)
             yield job.ip, job.port, stderr
+
+
+class MainframeWorker(LookseeWorker):
+    qinput = ScanResultQueue('mainframe_port')
+    qoutput = PickleResultQueue('mainframe_results')
+
+    def run(self, job):
+        try:
+            t = telnetlib.Telnet(job.ip, job.port, 5)
+            results = t.read_until('always_timeout', 4)
+            t.close()
+            if 'IBM OS' in results:
+                yield results
+        except Exception:
+            # It's ok if we have problems
+            pass
