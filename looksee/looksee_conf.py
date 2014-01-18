@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 def run(WorkerClass):
     def wrapped():
         worker = WorkerClass()
-        setproctitle(worker)
+        setproctitle(str(worker))
         log.info('Started worker:%s:%s', worker.__class__.__name__, os.getpid())
         for job in worker:
             if job:

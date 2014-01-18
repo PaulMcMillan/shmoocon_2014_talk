@@ -15,6 +15,7 @@ DEBS = [
     'nginx',
     'libhiredis*',
     'ethtool',
+    'python-setproctitle',
     ]
 
 @task
@@ -139,7 +140,7 @@ def install_masscan():
 
 @task
 def install_looksee():
-    sudo('pip install -U tasa python-redis-log requests setproctitle')
+    sudo('pip install -U tasa python-redis-log requests')
     with cd('/opt'):
         sudo('rm -rf shmoocon_2014_talk')
         sudo('git clone --depth 1 '
