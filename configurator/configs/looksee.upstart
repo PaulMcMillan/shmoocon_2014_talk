@@ -6,6 +6,7 @@ chdir /opt/shmoocon_2014_talk
 
 pre-start script
   echo "Updating looksee checkout..."
+  git reset --hard HEAD
   git pull
 end script
 
