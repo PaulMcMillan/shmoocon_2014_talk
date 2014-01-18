@@ -111,7 +111,7 @@ class RFBScreenshotWorker(LookseeWorker):
 
 class MainframeWorker(LookseeWorker):
     qinput = ScanResultQueue('mainframe_input')
-    qoutput = PickleResultQueue('mainframe_results')
+    qoutput = PickleQueue('mainframe_results')
 
     def run(self, job):
         try:
