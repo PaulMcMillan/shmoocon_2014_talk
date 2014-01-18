@@ -5,6 +5,8 @@ import re
 from multiprocessing import Process
 from functools import wraps
 
+from setproctitle import setproctitle
+
 from redislog.logger import RedisLogger
 from redislog.handlers import RedisHandler
 
@@ -35,6 +37,7 @@ message_lookup = {
 
 @ignore_keyboardinterrupt
 def listen_for_halt():
+    setproctitle('Halt Listener')
     pubsub = connection.pubsub()
     pubsub.subscribe('control')
     for message in pubsub.listen():
