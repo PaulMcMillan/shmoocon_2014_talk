@@ -38,6 +38,6 @@ workers = [
      },
     {'host': r'cloud-worker',
      'func': run(workers.RFBPrintWorker),
-     'count': 100,
+     'count': 80,
      },
     ]
