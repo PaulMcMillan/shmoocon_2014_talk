@@ -109,7 +109,7 @@ class RFBScreenshotWorker(LookseeWorker):
             container = 'shmoocon'  #job.ip.split('.')[0]
             job_string = '%s:%s' % (job.ip, job.port)
             pyrax.cloudfiles.store_object(container,
-                                          hmac_it(job_string) + '.jpg',
+                                          hmacit(job_string) + '.jpg',
                                           stdout,
                                           content_type="image/jpeg")
             connection = tasa.store.connection
