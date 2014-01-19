@@ -103,8 +103,8 @@ class RFBScreenshotWorker(LookseeWorker):
         #     name = ''
         if stdout:
             # store our result in the cloud
-            container = job.ip.split('.')[0]
-            file_name = job.ip + '_' + job.port + '.jpg'
+            container = 'shmoocon'  #job.ip.split('.')[0]
+            file_name = '%s_%s.jpg' % (job.ip, job.port)
             pyrax.cloudfiles.store_object(container,
                                           file_name,
                                           stdout,
