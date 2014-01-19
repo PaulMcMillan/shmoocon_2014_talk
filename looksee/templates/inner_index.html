@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Survey Results</title>
+</head>
+<body>
+{% for value in values %}
+<p>
+<img src="{{base_uri}}/{{value[0]}}.jpg"></img>
+<pre>{{value[1]}}</pre>
+</p>
+<hr/>
+{% endfor %}
+</body>
+</html>

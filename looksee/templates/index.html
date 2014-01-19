@@ -1,0 +1,13 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<ul>
+{% for bucket in bucket_list %}
+  <li><a href="{{ bucket[0] }}.html">{{ bucket[0].split('_')[1] }} </a> Count: </a> {{ bucket[1] }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
