@@ -95,7 +95,8 @@ class RFBScreenshotWorker(LookseeWorker):
                    '-',  # output screenshot jpeg to stdout
                    ]
         proc = subprocess.Popen(command,
-                                stdout=subprocess.PIPE)
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
         stdout, stderr = proc.communicate()
         # desktop_name = re.match('Desktop name "(.*)"\n', stderr)
         # if desktop_name:

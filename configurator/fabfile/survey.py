@@ -16,7 +16,8 @@ DEBS = [
     'libhiredis*',
     'ethtool',
     'python-setproctitle',
-    'vncsnapshot'
+    'vncsnapshot',
+    'python-imaging',
     ]
 
 @task
