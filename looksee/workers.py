@@ -1,9 +1,11 @@
+import hmac
 import re
 import subprocess
 import socket
 import telnetlib
 
 import pyrax
+#import Imaging
 
 import tasa
 
@@ -72,6 +74,10 @@ class RFBPrintWorker(LookseeWorker):
             pass
 
 
+def hmacit(msg):
+    return hmac.new(tasa.conf.REDIS_PASSWORD, msg).hexdigest()
+
+
 class RFBScreenshotWorker(LookseeWorker):
     qinput = ScanResultQueue('rfb_open')
     qoutput = PickleQueue('successful_screenshots')
@@ -98,22 +104,17 @@ class RFBScreenshotWorker(LookseeWorker):
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE)
         stdout, stderr = proc.communicate()
-        # desktop_name = re.match('Desktop name "(.*)"\n', stderr)
-        # if desktop_name:
-        #     name = desktop_name.groups()[0]
-        # else:
-        #     name = ''
         if stdout:
             # store our result in the cloud
             container = 'shmoocon'  #job.ip.split('.')[0]
-            file_name = '%s_%s.jpg' % (job.ip, job.port)
+            job_string = '%s:%s' % (job.ip, job.port)
             pyrax.cloudfiles.store_object(container,
-                                          file_name,
+                                          hmac_it(job_string) + '.jpg',
                                           stdout,
                                           content_type="image/jpeg")
             connection = tasa.store.connection
-            connection.hset('container_' + container, file_name, stderr)
-            yield job.ip, job.port, stderr
+            group = job.ip.split('.')[0]
+            connection.hset('results_' + group, job_string, stderr)
 
 
 class MainframeWorker(LookseeWorker):

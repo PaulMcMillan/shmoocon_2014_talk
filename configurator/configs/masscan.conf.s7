@@ -1,8 +1,8 @@
 
-adapter = eth0
-adapter-ip = 109.236.80.124
-router-mac = 00:d0:01:5e:2c:00
+adapter[0] = eth0
+adapter-ip[0] = 109.236.80.124
+router-mac[0] = 00:d0:01:5e:2c:00
 
-adapter = eth1
-adapter-ip = 109.236.80.126
-router-mac = 00:d0:01:5e:2c:00
+adapter[1] = eth1
+adapter-ip[1] = 109.236.80.126
+router-mac[1] = 00:d0:01:5e:2c:00

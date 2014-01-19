@@ -1,1 +1,8 @@
-adapter-ip = 5.254.106.66-5.254.106.73
+
+adapter[0] = em0
+adapter-ip[0] = 5.254.106.66-5.254.106.73
+router-mac[0] = 44:2b:03:37:ef:3f
+
+adapter[1] = em1
+adapter-ip[1] = 5.254.106.66-5.254.106.73
+router-mac[1] = 44:2b:03:37:ef:3f

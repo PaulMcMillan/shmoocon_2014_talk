@@ -7,6 +7,6 @@
 {% endblock page_header %}
 
 {% block infrastructure_main %}
+<img  src="http://stats.survey.tx.ai/render/?width=586&height=308&_salt=1390106054.477&from=-5minutes&target=alias(sumSeries(nonNegativeDerivative(*.interface.if_packets-*.tx)%2CnonNegativeDerivative(*.interface-*.if_packets.tx))%2C%22TX%20Packets%20Per%20Second%22)&target=alias(sumSeries(nonNegativeDerivative(*.interface.if_packets-*.rx)%2CnonNegativeDerivative(*.interface-*.if_packets.rx))%2C%22RX%20Packets%20Per%20Second%22)&title=Packets%20(5%20min)">
+<img  src="http://stats.survey.tx.ai/render/?width=586&height=308&_salt=1390106054.477&from=-15minutes&target=alias(sumSeries(nonNegativeDerivative(*.interface.if_packets-*.tx)%2CnonNegativeDerivative(*.interface-*.if_packets.tx))%2C%22TX%20Packets%20Per%20Second%22)&target=alias(sumSeries(nonNegativeDerivative(*.interface.if_packets-*.rx)%2CnonNegativeDerivative(*.interface-*.if_packets.rx))%2C%22RX%20Packets%20Per%20Second%22)&title=Packets%20(15%20min)">
 {% endblock %}
-
-
