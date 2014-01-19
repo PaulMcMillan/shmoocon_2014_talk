@@ -13,7 +13,7 @@ class DeletePrintJobs(tables.Action):
     classes = ("btn-danger", "btn-delete")
 
     def handle(self, data_table, request, object_ids):
-        MasscanQueue().clear()
+        RFBPrintWorker.qinput.clear()
 
 
 
